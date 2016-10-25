@@ -1,3 +1,0 @@
-#test=test
-greeter-session=lightdm-gtk-greeter
-#hello
