@@ -112,9 +112,6 @@ int main(int argc, char* argv[]) {
   vector<string> onlyfiles;
   getdir(mypath, onlyfiles);
   vector<string> imagefiles = pruneVecImg(onlyfiles);
-  imagefiles = pruneVec(imagefiles, "flora");
-  imagefiles = pruneVec(imagefiles, "brb.png");
-  imagefiles = pruneVec(imagefiles, "IMG_20141210");
 
   char resolvedpath[100];
   realpath(mypath.c_str(), resolvedpath);
