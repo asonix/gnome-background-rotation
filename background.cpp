@@ -44,7 +44,7 @@ bool hasEnding(string const &fullString, string const &ending) {
 
 vector<string> pruneVecImg(const vector<string> &inVec) {
   vector<string> inVec_new;
-  for (int f = 0; f < inVec.size(); ++f) {
+  for (unsigned int f = 0; f < inVec.size(); ++f) {
     if (hasEnding(inVec[f], "jpg")) {
       inVec_new.push_back(inVec[f]);
     }
@@ -60,7 +60,7 @@ vector<string> pruneVecImg(const vector<string> &inVec) {
 
 vector<string> pruneVec(const vector<string> &inVec, string contain) {
   vector<string> inVec_new;
-  for (int f = 0; f < inVec.size(); ++f) {
+  for (unsigned int f = 0; f < inVec.size(); ++f) {
     if (inVec[f].find(contain) == string::npos) {
       inVec_new.push_back(inVec[f]);
     }
@@ -68,7 +68,7 @@ vector<string> pruneVec(const vector<string> &inVec, string contain) {
   return inVec_new;
 }
 
-string formatXMLWide(string tag, auto inside, string tabs="") {
+string formatXMLWide(string tag, string inside, string tabs="") {
   stringstream ss;
   if (tag.find(" ") != string::npos) {
     stringstream nss(tag);
@@ -82,7 +82,7 @@ string formatXMLWide(string tag, auto inside, string tabs="") {
   return ss.str();
 }
 
-string formatXMLNarrow(string tag, auto inside, string tabs="") {
+string formatXMLNarrow(string tag, string inside, string tabs="") {
   stringstream ss;
   if (tag.find(" ") != string::npos) {
     stringstream nss(tag);
@@ -96,7 +96,7 @@ string formatXMLNarrow(string tag, auto inside, string tabs="") {
   return ss.str();
 }
 
-string comment(auto inside) {
+string comment(string inside) {
   stringstream ss;
   ss << "<!-- " << inside << " -->\n";
   return ss.str();
@@ -132,12 +132,14 @@ int main(int argc, char* argv[]) {
   }
   int tempdur = duration*10;
   duration = tempdur/10.0;
+  stringstream ss;
+  ss << duration;
 
   string innertext = "";
-  for (int i = 0; i < imagefiles.size(); ++i) {
+  for (unsigned int i = 0; i < imagefiles.size(); ++i) {
     innertext += formatXMLWide(
         "static", formatXMLNarrow(
-          "duration", duration, "\t\t") + formatXMLNarrow(
+          "duration", ss.str(), "\t\t") + formatXMLNarrow(
           "file", mypath+"/"+imagefiles[i], "\t\t")
         , "\t");
     if (i+1 < imagefiles.size())
